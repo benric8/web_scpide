@@ -1,0 +1,23 @@
+<div class="page-body">
+    <div class="page-header shadow-2 grid m-0">
+        <app-page-header 
+        back="../" 
+        [btn]="false" 
+        [desactivarTip]="true" 
+        titulo="Manual de usuario" 
+        [descripcion]=perfilManual></app-page-header>
+    </div>
+    <div class="page-content">
+        <div class="panel-form-content">
+          <div class="panel-form-manual">
+            <div class="grid">
+                <div class="col-12 flex justify-content-center" *ngIf="urlManual!==''">
+                    <iframe [src]="urlManual" class="manual-preview" ></iframe>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+ </div>
+
+

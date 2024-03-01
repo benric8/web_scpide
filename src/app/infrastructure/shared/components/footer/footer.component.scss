@@ -1,0 +1,26 @@
+@import '../../../../global.scss';
+footer {
+  margin-left: 0px !important;
+  background-color: $color-pj-primary;
+  height: 50px;
+  color: white;
+  width: 100%;
+  position: relative;
+  font-size: 10px;
+}
+footer.white{
+  background-color: transparent;
+  color: #999999;
+  font-size: 12px;
+}
+.content-footer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-footer{
+  text-align: center;
+}

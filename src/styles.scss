@@ -1,0 +1,110 @@
+html{
+    height: 100% !important;
+    margin: 0px;
+  }
+  body{
+    height: 100% !important;
+    margin: 0px;
+    /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+    font-family: 'Open Sans', sans-serif; */
+
+    //@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+    font-family: 'Montserrat', sans-serif !important;
+
+    /* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    font-family: 'Roboto', sans-serif; */
+    background-color: #dbdbdb;
+  }
+  /* You can add global styles to this file, and also import other style files */
+  /* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px white; 
+    border-radius: 8px;
+}
+    
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #bdbdbd; 
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #9e9e9e; 
+}
+
+.content-splash {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background: rgba(226, 232, 240,.85);
+  z-index: -1;
+  display: none;
+  margin: 0 1rem 0 0;
+    /*
+    background-color: #ffffff7d;   
+    */
+    /*backdrop-filter: blur(48px);
+    background-blend-mode: overlay;*/
+    
+}
+.loading{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+app-root:empty ~ .content-splash {
+  z-index: 10000 !important;
+  display: block;
+}
+.show-loading{
+  z-index: 10000 !important;
+  display: block !important;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+
+  animation: loader 2s infinite ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*-------*/
+
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

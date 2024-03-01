@@ -1,0 +1,31 @@
+<div class="main-body">
+    <div class="row-header shadow-3">
+        <app-navbar [profile]="true" (sidebarEvent)="sidebarOnChange($event)" (drawableEvent)="drawableOnChange($event)"></app-navbar>
+    </div>
+    <div class="row-content">
+        <div class="row-content-body">
+            <div class="panel-sidebar shadow-5" [ngClass]="{'sidebar-min': sidebarShow}">
+                <app-menu [menuMin]="sidebarShow"  [mobile]="false" [listaOpciones]="listaOpciones" (menuIndexEvent)="goRoute($event)" (menuActivarEvent)="onActivateEvent($event)"></app-menu>
+                
+            </div>
+            <div class="panel-content" [ngClass]="{'content-full': sidebarShow}">
+                <router-outlet></router-outlet>
+                <!-- <app-footer [claro]="true"></app-footer> -->
+            </div>
+        </div>
+    </div>
+    <div class="row-footer p-shadow-5" >
+        <!-- {{url$ | async }} -->
+        <app-footer></app-footer>
+    </div>
+</div>
+<p-sidebar 
+    [(visible)]="display"
+    [transitionOptions]="'200ms'"
+    [blockScroll]="true"
+    [autoZIndex]="true"
+    [style]="{'overflow-y':'auto','width':'250px'}"
+    appendTo="body"
+>
+    <app-menu [menuMin]="false" [mobile]="true" (menuClickEvent)="display = false" [listaOpciones]="listaOpciones" (menuIndexEvent)="goRoute($event)" (menuActivarEvent)="onActivateEvent($event)"></app-menu>
+</p-sidebar>

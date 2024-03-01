@@ -1,0 +1,60 @@
+<div class="header-container">
+    <div class="container-navbar">
+      <div class="left-navbar">
+        <div  *ngIf="profile">
+          <button pButton pRipple type="button" icon="pi pi-list" class="p-button-rounded p-button-text p-button-secondary p-button-outlined menu-icon" id="btn-sidebar" (click)="toggleSidebar($event)"></button>
+          <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded p-button-text p-button-secondary p-button-outlined menu-icon" id="btn-drawable" (click)="toggleDrawable($event)"></button>
+        </div>
+        
+        <div class="logo-pj">
+          <img class="img-icon" src="assets/img/logo-pj.png" alt="">
+        </div>
+        <div class="logo-pj-mini">
+          <img class="img-icon" src="assets/img/logo_pj_mini.png" alt="">
+        </div>
+      </div>
+      <div class="center-navbar">
+        <div class="title">
+          {{title}}
+        </div>
+      </div>
+      <div class="right-navbar ">
+        <div class="logo-app">
+          <img class="img-icon" src="assets/img/logo_serviciosComunesPIDE_fondoOscuro.png" alt="">
+        </div>
+        <div class="logo-app-mini">
+          <img class="img-icon" src="assets/img/logo_app_mini.png" alt="">
+        </div>
+        <div class="profile" *ngIf="profile">
+          <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-secondary p-button-outlined menu-icon" (click)="op.toggle($event)"></button>
+          <p-overlayPanel #op [style]="{width: '230px', border: '2px solid rgba(147, 13, 13, 0.3)',top: 'initial !important'}" styleClass="p-shadow-12 panel-profile">
+              <ng-template pTemplate>
+                  <div class="grid m-0">
+                      <div class="col-12 y-0">
+                          <div class="imagen-avatar center">
+                              <div class="image-avatar">
+                                <fa-icon [icon]="faUserTie" class="icon-perfil"></fa-icon>
+                              </div>
+                              <!-- <fa-icon [icon]="item.icon" class="icon-perfil"></fa-icon>
+                              <img class="image-avatar" src="assets/img/avatar.svg" alt="imagen avatar requisitorias"> -->
+                          </div>
+                      </div>
+                      <div class="col-12 y-0">
+                        <div class="text-profile-entidad">{{dataUsuario.usuario}}</div>
+                        <div class="text-profile-correo">{{dataUsuario.apellidosNombres}}</div>
+
+                        <!--<div class="text-profile-perfil">{{dataPerfil.title}}</div>-->
+                        <div class="text-profile">{{dataUsuario.nombrePerfil}}</div>
+                      </div>
+                      <div class="col-12 y-0 m-0 p-0">
+                          <p-menu [model]="itemsEnd" styleClass="menu-profile"></p-menu>
+                      </div>
+                  </div>
+              </ng-template>
+          </p-overlayPanel>
+        </div>
+        
+      </div>
+      
+    </div>
+</div>

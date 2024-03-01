@@ -1,0 +1,90 @@
+<app-navbar [profile]="true"></app-navbar>
+<div class="main-container">
+    <div class="page-header shadow-2 grid m-0">
+        <app-page-header [backHistory]="true" [btn]="true" [desactivarTip]="true" titulo="Cambiar clave" descripcion="web"></app-page-header>
+    </div>
+    <div class="main-content">
+        
+        <div class="grid panel-main">
+            <div
+              class="
+                col-12
+                sm:col-8
+                sm:col-offset-2
+                md:col-6
+                md:col-offset-3
+                lg:col-4
+                lg:col-offset-4
+                xl:col-4
+                xl:col-offset-4
+                mt-4
+              "
+            >
+              <p-panel styleClass="shadow-4 p-panel-secondary" header="Cambiar clave" [toggleable]="true">
+                <div class="grid">
+                  <div class="p-float-label col-12 mt-1">
+                      <p-password
+                        [toggleMask]="true" 
+                        [(ngModel)]="cambiarClave.claveActual"
+                        [feedback]="false"
+                        name="claveActual"
+                        class="input-block" 
+                        styleClass="input-block w-100" 
+                        inputStyleClass="p-inputtext input-pj w-100 rounded-pj"
+                        required
+                      ></p-password>
+                      <label>Clave Actual</label>
+                  </div>
+
+
+                    <div class="p-float-label col-12 mt-1">
+                        <p-password
+                        [toggleMask]="true"
+                        [feedback]="true" 
+                        [(ngModel)]="cambiarClave.claveNueva"
+                        name="claveNueva"
+                        promptLabel="Ingrese una contraseña"
+                        weakLabel="Seguridad Debil"
+                        mediumLabel="Seguridad Media"
+                        strongLabel="Seguridad Alta"
+                        class="input-block" 
+                        styleClass="input-block w-100" 
+                        inputStyleClass="p-inputtext input-pj w-100 rounded-pj"
+                        required
+                        ></p-password>
+                        <label>Nueva clave</label>
+                    </div>
+                    <div class="p-float-label col-12 mt-1">
+                        
+                        <p-password
+                        [toggleMask]="true" 
+                        [(ngModel)]="cambiarClave.claveNuevaConfi"
+                        [feedback]="false"
+                        name="contrasenia"
+                        class="input-block" 
+                        styleClass="input-block w-100" 
+                        inputStyleClass="p-inputtext input-pj w-100 rounded-pj"
+                        required
+                        ></p-password>
+                        <label>Confirmar Nueva clave</label>
+                        <small class="form-text-error" *ngIf="cambiarClave.claveNueva != cambiarClave.claveNuevaConfi">* ¡Las claves no coinciden!</small>
+                    </div>
+
+                  <div class="col-12 py-0 mt-2" align="center">
+                    <button
+                      pButton (click)="cambiarContrasenia()"
+                      type="button"
+                      label="CAMBIAR CLAVE"
+                      class="btn-pj p-button-danger"
+                      icon="pi pi-check-circle"
+                      [disabled]="cambiarClave.claveActual.trim() == '' || cambiarClave.claveNueva.trim() == '' || cambiarClave.claveNuevaConfi.trim() == '' "
+                    ></button>
+                  </div>
+                </div>
+              </p-panel>
+            </div>
+          </div>
+          
+    </div>
+    <app-footer></app-footer>
+</div>

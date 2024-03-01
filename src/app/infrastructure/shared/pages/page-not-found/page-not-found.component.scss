@@ -1,0 +1,29 @@
+@import '../../../../global.scss';
+.panel-main-404{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.text-page-not-found{
+    font-size: 11px;
+    line-height: 14px;
+    color:#666666;
+    padding: 1rem;
+}
+.panel-portada-page-not-found{
+    background-color: $color-pj-bg-light;
+    margin: 4rem 1rem 0rem 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.panel-title-not-found{
+    font-size: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    padding-top: 1rem;
+}
+.image-page-not-found{
+    width: 100%;
+}

@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main-content grid">
+        <div class="col-12 md:col-10 lg:col-10 xl:col-9">
+            <form  #formRef="ngForm">
+                <div class="grid panel-login">
+                    <div class="col-12 sm:col-8 md:col-6 lg:col-5 xl:col-4">
+                        <div class="body-login mx-4 mt-5 shadow-7">
+                            <p-progressBar *ngIf="!tokenLoad" mode="indeterminate" [style]="{'height': '4px'}"></p-progressBar>
+                            <p-blockUI [blocked]="loginBlock" [target]="pnl">
+                                <div class="flex flex-column" >
+                                    <div class="flex justify-content-center">
+                                        <i class="pi pi-lock bloqueo-icon-login"></i>
+                                    </div>
+                                    <div class="flex justify-content-center mx-4">
+                                        <small align=" center">Error en la conexión con el servicio, recargue la página.</small>
+                                    </div>
+                                    <div class="flex justify-content-center mx-4 mt-3">
+                                        <button pButton pRipple type="button" label="Recargar Página" (click)="reloadLogin()" icon="pi pi-refresh" iconPos="right"  class="btn-pj p-button-sm p-buttonm  btn-login rounded-pj"></button> 
+                                    </div>
+                                </div>
+                            </p-blockUI>
+                            <p-panel #pnl [showHeader] ="false" styleClass="p-panel-transparent px-3 py-4 mx-2">
+                                <div class="grid">
+                                    <div class="col-12 mt-5 py-0 center">
+                                        <span class="login-title">Servicios Comunes Pide</span>
+                                    </div>
+                                    <div class="col-12 py-0">
+                                        <hr class="mt-0"/>
+                                    </div>
+                                    <div class="col-12 py-0">
+                                        <p-divider align="center" styleClass="mb-0 mt-0">
+                                            <div class="inline-flex align-items-center">
+                                                <small class="titulo-rq">Versión {{ versionApp }}</small>
+                                            </div>
+                                        </p-divider>
+                                    </div>
+                                    <div class="p-float-label col-12 mt-1">
+                                        <input type="text" id="txt-usuario" pInputText class="p-inputtext input-pj w-100 rounded-pj" name="usuario" #usuario="ngModel" required [(ngModel)]="user.usuario" [ngModelOptions]="{standalone: true}" autocomplete="off">
+                                        <label for="txt-usuario">Usuario</label>
+                                        <!--
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon input-addon"><i class="pi pi-user input-addon-icon"></i></span>  
+                                            <input type="text" pInputText placeholder="Usuario" class="input-pj p-inputtext-sm" name="usuario" #usuario="ngModel" required [(ngModel)]="user.usuario" [ngModelOptions]="{standalone: true}" autocomplete="off">
+                                        </div>
+                                        -->
+                                    </div>
+    
+                                    <small class="form-text text-muted danger" *ngIf="usuario.errors?.['required'] && usuario.touched">* ¡El campo usuario es requerido!</small>
+                                    <div class="p-float-label col-12 mt-2">
+                                        <p-password [(ngModel)]="user.contrasenia" [toggleMask]="true" [feedback]="false" name="contrasenia" class="input-block" styleClass="input-block" inputStyleClass="p-inputtext input-pj w-100 rounded-pj" required #password="ngModel" ></p-password>
+                                        <label for="txt-password">Contraseña</label>
+                                        <!--
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon input-addon"><i class="pi pi-key input-addon-icon"></i></span>  
+                                            <p-password [(ngModel)]="user.contrasenia" [toggleMask]="true" [feedback]="false" name="contrasenia" placeholder="Contraseña" class="input-block" styleClass="input-block" inputStyleClass="input-pj p-inputtext-sm" required #password="ngModel" ></p-password>
+                                        </div>
+                                        -->
+                                        
+                                    </div>
+                                    <small class="form-text text-muted danger" *ngIf="password.errors?.['required'] && password.touched">* ¡El campo contraseña es requerido!</small> 
+                                    <div class="col-12 py-1 flex justify-content-center">
+                                        <!--captcha-->
+                                        <re-captcha #captchaElem class="g-capcha" (resolved)="resolved($event)" errorMode="handled" siteKey="{{capchaKey}}"></re-captcha>
+                                    </div>
+                                    <div class="col-12 py-1 center ">
+                                        <button pButton pRipple type="button" label="INGRESAR" [disabled]="formRef.invalid" [loading]="loginLoad" (click)="login()" icon="pi pi-sign-in" iconPos="right"  class="btn-pj p-buttonm  btn-login rounded-pj"></button>       
+                                    </div>
+                                    <div class="col-12 py-0">
+                                        <hr/>
+                                    </div>
+                                    <div class="col-12 pt-1">
+                                        <span><i class="pi pi-book" style="font-size: 1.2 rem"></i> Nota</span><br>
+                                        <div class="login-nota-text">
+                                            Accesos y/o consultas llamar al Centro de Servicio - Service Desk.<br>
+                                            - Horario Atención: Lunes - Viernes 8:00 - 17:00<br>
+                                            - Teléfono: (+511) 4102525 Anexo: 13990<br>
+                                            - Correo: servicedesk@pj.gob.pe
+                                        </div> 
+                                    </div>
+                                </div>
+                            </p-panel>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 sm:col-4 md:col-6 lg:col-7 xl:col-8  panel-portada-info">
+                        <div class="grid">
+                            <!--<div class="col-12 py-0 center">
+                                <h1 class="text-body-title">Sistema de Auxilio para las Víctimas de Violencia<br>
+                                    Botón de Pánico
+                                </h1>
+                            </div>-->
+                            <div class="col-12">
+                                <div class="panel-imagen-portada center">
+                                    <app-fondo-svg [colorPrimary]="colorSVG"></app-fondo-svg>
+                                    <!---<img class="image-portada" src="assets/img/boton-panico-pj.svg" alt="imagen portada historial judcial de candidatos">-->
+                                </div>
+                            </div>
+                            <!--<div class="col-12 py-1 center text-paragraph flow-text">
+                                Permite realizar la administración, monitoreo y seguimiento a víctimas de violencia, a través del aplicativo móvil Botón de Pánico.
+                            </div>-->
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

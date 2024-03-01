@@ -1,0 +1,85 @@
+@import '../../../../global.scss';
+.sidebar{
+    height: calc(100vh - 100px);/* quitamos el alto del header y footer*/
+    overflow-y: auto;
+}
+/*
+.sidebar-menu ul{
+    margin: 0px;
+    padding: 0px;
+    
+}
+*/
+.sidebar-menu{
+    padding: 0rem;
+}
+/*
+.sidebar-menu li{
+    //padding: 0.7rem 1rem;
+    background-color: white;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.sidebar-menu li a{
+    text-decoration: none;
+    display: block;
+    color: #000000;
+    padding: 0.7rem 1rem 0.7rem 0.5rem;
+}
+
+.indentado{
+    padding-left: 0.5rem;
+}
+
+.sidebar-menu li:hover, .sidebar-menu li:hover>a{
+    background-color:  $color-pj-primary;
+    color: #ffffff;
+}
+
+// .sidebar-menu li:hover span{
+//    display: inline-block ;
+//}
+
+.sidebar-menu li.selected {
+    background-color:  $color-pj-primary;
+    color: #ffffff;
+}
+.sidebar-menu span{
+    padding-left: 1rem;
+}
+.hide{
+    display: none ;
+}
+*/
+.image-logo-mobile{
+    width: 60%;
+    padding: 0.3rem 0rem;
+}
+/************/
+/*
+.icono-padre{
+    position: absolute;
+    right: 0.7rem;
+    font-size: 12px;
+}
+.icono-padre-min{
+    position: absolute;
+    right: 0.2rem;
+    font-size: 8px;
+}
+.submenu{
+    z-index: 9999;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    line-height: normal;
+}
+
+.padre:hover>ul {
+    display: block;
+}*/
+

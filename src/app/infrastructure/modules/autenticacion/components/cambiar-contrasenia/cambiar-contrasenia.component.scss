@@ -1,0 +1,27 @@
+@import '../../../../../global.scss';
+.main-container{
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    overflow: auto;
+    left: 0;
+    right: 0;
+}
+.main-content {
+    min-height: calc(100vh - 140px);
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 1500px){
+    .main-content {
+        width: 1470px;
+    }
+}
+.form-text-error{
+    color: red;
+}
+.page-header{
+    background-color: #FFFFFF;
+}

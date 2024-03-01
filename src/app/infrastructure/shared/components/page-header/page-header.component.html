@@ -1,0 +1,15 @@
+<div class="header">
+    <div class="icon-header header-item" *ngIf="btn">
+        <button pButton pRipple type="button" icon="pi pi-arrow-left" class=" btn-back" (click)="goBack()" [pTooltip]="tip" [tooltipDisabled]="desactivarTip"></button>
+    </div>
+    <div class="grid m-0 header-item flex align-items-center">
+        <div class="title-header">
+            {{titulo}}
+        </div>
+        <div class="description-header">
+            {{descripcion}}
+        </div>
+    </div>
+</div>
+
+

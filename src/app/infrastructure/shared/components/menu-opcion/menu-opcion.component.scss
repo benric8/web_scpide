@@ -1,0 +1,67 @@
+@import '../../../../global.scss';
+.menu-sistema{
+    margin: 0px;
+    padding: 0px;
+}
+.opcion{
+    background-color: white;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+}
+.opcion a{
+    text-decoration: none;
+    display: block;
+    color: #000000;
+    padding: 0.7rem 1rem 0.7rem 1rem;
+}
+.indentado{
+    padding-left: 0.5rem;
+}
+
+.opcion a:hover{
+    background-color: #e0e0e0;
+    //color: #ffffff;
+}
+.opcion.selected>a{
+    border-top-left-radius: .8rem;
+    border-bottom-left-radius: .8rem;
+    background-color:  $color-pj-primary;
+    color: #ffffff;
+}
+span{
+    padding-left: 1rem;
+}
+.hide{
+    display: none ;
+}
+.icono-padre{
+    position: absolute;
+    right: 0.7rem;
+    font-size: 12px;
+}
+.icono-padre-min{
+    position: absolute;
+    right: 0.2rem;
+    font-size: 8px;
+}
+.submenu{
+    z-index: 9999;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    line-height: normal;
+}
+/*
+.padre:hover>ul {
+    display: block;
+}
+*/
+.padre.active>ul{
+    display: block;
+}
+.active{
+    display: block;
+}

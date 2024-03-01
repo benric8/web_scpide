@@ -1,0 +1,193 @@
+<div class="page-body">
+    <div class="page-header shadow-2 grid m-0">
+        <div class="toolbar col-12 m-0 p-0">
+            <div class="toolbar-content grid m-0">
+                <!--left-->
+                <div class="col-12 xl:col-6 p-0 flex justify-content-between xl:justify-content-start align-items-center">
+                    <div class="py-2">
+                        <button pButton pRipple type="button" icon="pi pi-refresh" iconPos="right" (click)="listarOperaciones()" class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                        <button pButton pRipple type="button" label="Nuevo"  icon="pi pi-plus" iconPos="right" (click)="nuevoOperacion()"  class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                    </div>
+                   
+                </div>
+                <!--rigth-->
+                <div class="col-12 xl:col-6 p-0 flex justify-content-center xl:justify-content-end">
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div class="page-content">
+        <!--
+        <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+            </ng-template>
+    
+            <ng-template pTemplate="right">
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+            </ng-template>
+        </p-toolbar>
+        -->
+        <div class="grid m-0">
+            <div class="col-12" style="/*overflow: scroll;*/" >
+                <p-table #dt [value]="listaOperaciones" [rows]="10" [rowsPerPageOptions]="[10,25,50]" [paginator]="true" [globalFilterFields]="['nombre']" responsiveLayout="scroll"
+                [rowHover]="true" dataKey="id"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between px-2">
+                            <h4 class="m-0">Mantenimiento de Operaciones</h4>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar por nombre en la tabla" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr class="table-header-pj">
+                            <th pSortableColumn="nombre" class="table-text">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+                            <th pSortableColumn="operacion" class="table-text">Operación <p-sortIcon field="operacion"></p-sortIcon></th>
+                            <th class="table-text">Descripción</th>
+                            <th class="table-text">EndPoint</th>
+                            <th class="table-text">Cuota por Defecto</th>
+                            <th class="table-text">Requiere Aprobación de Registro de Acceso</th>
+                            <th class="table-text">Requiere Aprobación de Cambio de Cuota</th>
+                            <th class="table-text">Requiere Aprobación de Cambio de Ips</th>
+                            <th class="table-text">Requiere Aprobación de Cambio de Estado</th>
+                            <th pSortableColumn="activo" class="table-text">Estado <p-sortIcon field="activo"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-operacionItem>
+                        <tr class="table-row">
+                            <td class="table-text">{{operacionItem.nombre}}</td>
+                            <td class="table-text">{{operacionItem.operacion}}</td>
+                            <td class="table-text">{{operacionItem.descripcion}}</td>
+                            <td class="table-text">{{operacionItem.endPoint}}</td>
+                            <td class="table-text">{{operacionItem.cuotaDefecto}}</td>
+                            <td class="table-text">
+                                <ng-container *ngIf="operacionItem.requiereAprobacionAcceso === '1'; else reqApAccesoNo">
+                                  Si
+                                </ng-container>
+                                <ng-template #reqApAccesoNo>
+                                  No
+                                </ng-template>
+                            </td>
+                            <td class="table-text">
+                                <ng-container *ngIf="operacionItem.requiereAprobacionCuota === '1'; else reqApCuotaNo">
+                                  Si
+                                </ng-container>
+                                <ng-template #reqApCuotaNo>
+                                  No
+                                </ng-template>
+                            </td>
+                            <td class="table-text">
+                                <ng-container *ngIf="operacionItem.requiereAprobacionIps === '1'; else reqApIpsNo">
+                                  Si
+                                </ng-container>
+                                <ng-template #reqApIpsNo>
+                                  No
+                                </ng-template>
+                            </td>
+                            <td class="table-text">
+                                <ng-container *ngIf="operacionItem.requiereAprobacionEstado === '1'; else reqApEstadoNo">
+                                  Si
+                                </ng-container>
+                                <ng-template #reqApEstadoNo>
+                                  No
+                                </ng-template>
+                            </td>
+                            <td class="table-text">
+                                <ng-container *ngIf="operacionItem.activo === '1'; else inactivoText">
+                                  Activo
+                                </ng-container>
+                                <ng-template #inactivoText>
+                                  Inactivo
+                                </ng-template>
+                            </td>
+                            <td>
+                                <button pButton pRipple type="button" label="Detalle" (click)="verEditarOperacion(operacionItem)" class="p-button-sm btn-pj" icon="pi pi-pencil" iconPos="right"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-center">
+                            En total se encontraron {{listaOperaciones ? listaOperaciones.length : 0 }} operaciones
+                        </div>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </div>
+        
+        
+        <p-dialog [(visible)]="operacionDialog" [style]="{width: '460px'}" header="Operación" [modal]="true" styleClass="dialog-primary" appendTo="body">
+            <ng-template pTemplate="content">
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-4">
+                        <input id="txt-nombre" type="text" [(ngModel)]="operacion.nombre" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-nombre">Nombre de Operación</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-3">
+                        <input id="txt-operacion" type="text" [(ngModel)]="operacion.operacion" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-operacion">Operación</label>
+                    </div>
+                </div>
+                <div class="grid" >
+                    <div class="p-float-label col-12 mt-3">
+                        <textarea id="txt-descripcion" pInputTextarea [rows]="2" [(ngModel)]="operacion.descripcion" class="input-pj w-100"></textarea>
+                        <label class="" for="txt-descripcion">Descripción</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-3">
+                        <input id="txt-endpoint" type="text" [(ngModel)]="operacion.endPoint" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-endpoint">EndPoint</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="p-float-label col-12 mt-3">
+                        <input id="txt-cuotoDe" type="number" [(ngModel)]="operacion.cuotaDefecto" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="txt-cuotoDe">Cuota por Defecto</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 mt-3 py-1 flex align-items-center gap-1">
+                        <p-checkbox inputId="chb-acceso" [(ngModel)]="requiereAprobacionAcceso" [binary]="true"></p-checkbox>
+                        <label for="chb-acceso">Requiere Aprobación de Registro de Acceso</label>
+                    </div>
+                    <div class="col-12 py-1 flex align-items-center gap-1">
+                        <p-checkbox inputId="chb-cuota" [(ngModel)]="requiereAprobacionCuota" [binary]="true"></p-checkbox>
+                        <label for="chb-cuota">Requiere Aprobación de Cambio de Cuota</label>
+                    </div>
+                    <div class="col-12 py-1 flex align-items-center gap-1">
+                        <p-checkbox inputId="chb-ips" [(ngModel)]="requiereAprobacionIps" [binary]="true"></p-checkbox>
+                        <label for="chb-ips">Requiere Aprobación de Cambio de Ips</label>
+                    </div>
+                    <div class="col-12 py-1 flex align-items-center gap-1">
+                        <p-checkbox inputId="chb-estado" [(ngModel)]="requiereAprobacionEstado" [binary]="true"></p-checkbox>
+                        <label for="chb-estado">Requiere Aprobación de Cambio de Estado</label>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="dropdown-float-group col-12 py-0 mt-2 pb-2">
+                        <label for="estado" class="label-float-dropdown">Estado</label>
+                        <p-dropdown [options]="estadosOperacion" [(ngModel)]="operacion.activo" optionLabel="label" optionValue="value" styleClass="input-pj w-100 dropdown-float" [disabled]="!modificar" appendTo="body"></p-dropdown>
+                    </div>
+                </div>   
+            </ng-template>
+        
+            <ng-template pTemplate="footer">
+                <button pButton pRipple type="button" label="Guardar cambios"  icon="pi pi-save" iconPos="right" (click)="guardarCambiosEventClick()"  class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                <!--<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>-->
+            </ng-template>
+
+        </p-dialog>
+
+    </div>
+</div>
+

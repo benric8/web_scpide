@@ -1,0 +1,360 @@
+<div class="page-body">
+    <div class="page-header shadow-2 grid m-0">
+        <div class="toolbar col-12 m-0 p-0">
+            <div class="toolbar-content grid m-0">
+                <div class="col-12 xl:col-6 p-0 flex justify-content-between xl:justify-content-start align-items-center">
+                    <div class="pb-2 pt-0 flex flex-wrap align-items-end gap-1">
+                        <!--<button pButton pRipple type="button" (click)="consultarSolicitudes()" icon="pi pi-refresh" iconPos="right"  class="btn-pj p-button-sm rounded-pj mr-2"></button>-->
+                        <!--<button pButton pRipple type="button" label="Nuevo"  icon="pi pi-user-plus" iconPos="right" (click)="nuevoVictimaEventClick()"   class="btn-pj p-button-sm rounded-pj"></button>
+                        <div class="p-inputgroup">
+                            <input pinput type="text" pInputText placeholder="N° Documento" [(ngModel)]="filtroVictimas.documentoIdentidad" class="input-pj p-inputtext-sm input-rounded" />
+                            <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-warn" (click)="listarVictimas()"></button>      
+                        </div>-->
+                        <div class="p-float-label mt-1">
+                            <p-calendar [(ngModel)]="filtro.fechaDesde" yearRange="2000:2030" [autoZIndex]="true" [readonlyInput]="true"   appendTo="body"dateFormat="dd/mm/yy" [minDate]="fechaDesdeMin" [maxDate]="fechaHasta" [monthNavigator]="true" [yearNavigator]="true" inputStyleClass=" input-pj"  yearRange="2000:2030" inputId="fechaI" [style] ="{ width:'120px'}" [inputStyle] ="{ width:'120px'}" [showIcon]="false" (onSelect)="fechaDesdeSeleccionado($event)"></p-calendar>
+                            <label for="txt-fecha-na">Desde</label>
+                        </div>
+                        <div class="p-float-label mt-1">
+                            <p-calendar [(ngModel)]="filtro.fechaHasta" yearRange="2000:2030" [autoZIndex]="true" [readonlyInput]="true"   appendTo="body"dateFormat="dd/mm/yy" [minDate]="fechaDesde" [maxDate]="fechaHastaMax" [monthNavigator]="true" [yearNavigator]="true" inputStyleClass=" input-pj" yearRange="2000:2030" inputId="fechaF" [style] ="{ width:'120px'}" [inputStyle] ="{ width:'120px'}" [showIcon]="false"></p-calendar>
+                            <label for="txt-fecha-na">Hasta</label>
+                        </div>
+                        <div class="dropdown-float-group mt-0 py-0">
+                            <label class="label-float-dropdown">Estado</label>
+                            <p-dropdown [options]="estados" [(ngModel)]="filtro.idEstadoSolicitud"  optionLabel="label" optionValue="value" placeholder="Pendiente" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+                        </div>
+                        <button type="button" pButton pRipple icon="pi pi-search" class="btn-pj p-button-sm rounded-pj" (click)="consultarSolicitudes()"></button>      
+                    </div>
+                    <div class="mx-1 flex align-items-end item-filter">
+                        <button pButton pRipple type="button" icon="pi pi-sliders-h" class="btn-pj rounded-pj" (click)="panelFilter.toggle($event)"></button>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-12 xl:col-6 p-0 flex justify-content-center xl:justify-content-end">
+                    <!--
+                    <div class="paginator">
+                        <p-paginator
+                            [rows]="rows"
+                            [totalRecords]="totalRecords"
+                            [rowsPerPageOptions]="[10, 20, 30, 50]"
+                            [pageLinkSize]="pageLinkSize"
+                            [first]="first"
+                            (onPageChange)="paginate($event)"
+                            styleClass="p-1"
+                        >
+                        </p-paginator>
+                    </div>
+                    -->
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="grid m-0">
+            <div class="col-12" style="/*overflow: scroll;*/" >
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <h3>&nbsp;&nbsp;&nbsp; Lista de Solicitudes</h3>
+                       <!--  <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
+                    </ng-template>
+            
+                    <ng-template pTemplate="right">
+                        <!--<button pButton pRipple label="Nueva Solicitud" icon="pi pi-file-o" class="p-button-secondary p-mr-1" *ngIf="esServiceDesk" (click)="nuevaSolicitud()"></button>-->
+                        <button pButton pRipple label="Aprobar" icon="pi pi-thumbs-up" class="p-button-success p-mr-1" *ngIf="!esServiceDesk" (click)="aprobarSolicitud()" [disabled]="!SolicitudSeleccionada"></button> 
+                        <button pButton pRipple label="Rechazar" icon="pi pi-thumbs-down" class="p-button-danger p-mr-1" *ngIf="!esServiceDesk" (click)="rechazarSolicitud()" [disabled]="!SolicitudSeleccionada"></button> 
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt [value]="solicitudes"  [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="SolicitudSeleccionada" dataKey="idSolicitud"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30]" responsiveLayout="scroll"
+                styleClass="p-datatable-sm">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem"></th>
+                            <th>Nro. Solicitud</th>
+                            <th>Tipo Solicitud</th>
+                            <th>Entidad</th>
+                            <th>Operación</th>
+                            <th>Solicitante</th>
+                            <th>Fecha de Solicitud</th>
+                            <th>Estado</th>
+                            <th style="width: 8rem"></th>
+                        </tr>
+                    </ng-template>
+                    <!-- <ng-template pTemplate="body" #tdmas let-item let-rowIndex="rowIndex"> -->
+                    <ng-template pTemplate="body" let-item> 
+                        <tr [pSelectableRow]="item">
+                            <td>
+                                <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                            </td>
+                            <td>{{ item.idSolicitud }}</td>
+                            <td>{{ item.tipoSolicitud }}</td>
+                            <td class="colDerecha" >{{ item.nombreEntidad }}</td>
+                            <td class="colDerecha">{{ item.nombreOperacion }}</td>
+                            <td class="colDerecha">{{ item.solicitante }}</td>
+                            <td class="colDerecha">{{ item.fechaSolicito }}</td>
+                            <td>{{ item.estadoSolicitud }}</td>
+                            <td>
+                                <button pButton pRipple type="button" label="Detalle" class="p-button-sm btn-detalle" (click)="buscarDetalle(item)"></button>
+                            </td>
+                        </tr>      
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+
+    <p-overlayPanel #panelFilter [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'100ms'"  [dismissable]="true" [showCloseIcon]="true" [style]="{ border: '2px solid rgba(147, 13, 13, 0.3)',top: 'initial !important'}" styleClass="shadow-8 panel-filter">
+        <ng-template pTemplate>
+            <div class="panel-filter-content">
+                <div class="grid">
+                    <div class="col-12 pb-0">
+                        <p-divider align="left" styleClass="mb-0 mt-2">
+                            <div class="inline-flex align-items-center">
+                                <i class="pi pi-filter mr-2"></i>
+                                <b>Filtros</b>
+                            </div>
+                        </p-divider>
+                    </div>
+                </div>
+                <div class="grid m-0">
+                    <div class="p-float-label col-12 mt-2 ">
+                        <input id="filtro-num-sol" type="text" [(ngModel)]="filtro.idSolicitud" [min]="0" [max]="100000000" maxlength=9 (input)="check_NroSolicitud($event)" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="filtro-num-sol">Nro. Solicitud</label>
+                    </div>
+                    <div class="dropdown-float-group col-12 mt-0 pT-0">
+                        <label class="label-float-dropdown">Estado</label>
+                        <p-dropdown [options]="estados" [(ngModel)]="filtro.idEstadoSolicitud"  optionLabel="label" optionValue="value" placeholder="Pendiente" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+                    </div>
+                    <div class="p-float-label col-12 mt-1">
+                        <p-autoComplete [(ngModel)]="entidadSeleccionada" [suggestions]="listaEntidades" (completeMethod)="cargarSugerenciasEntidad($event)" [maxlength]=80  field="razonSocial" inputStyleClass="p-inputtext-sm input-block" [style] ="{ width:'100%'}" [inputStyle] ="{ width:'100%'}" [dropdown]="false" [forceSelection]="true"></p-autoComplete>
+                        <label for="filtro-entidad">Entidad</label>
+                    </div>
+                    <div class="dropdown-float-group col-12 mt-0 py-0">
+                        <label class="label-float-dropdown">Operación</label>
+                        <p-dropdown [options]="listaOperaciones" [(ngModel)]="filtro.idOperacion"  optionLabel="nombre" optionValue="idOperacion" [showClear]="true"  placeholder="Todas" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-field" style="margin-left: 4%;">
+                            <br/><label for="dni">Fecha Solicitud</label>
+                        </div>
+                    </div>  
+                    <div class="p-float-label col-12 mt-1">
+                        <p-calendar  [(ngModel)]="filtro.fechaDesde" yearRange="2000:2030" [autoZIndex]="true" [readonlyInput]="true"   appendTo="body" dateFormat="dd/mm/yy" [minDate]="fechaDesdeMin" [maxDate]="fechaHasta" [monthNavigator]="true" [yearNavigator]="true" inputStyleClass="input-block p-inputtext input-pj" [style] ="{ width:'100%'}" [inputStyle] ="{ width:'100%'}" yearRange="2000:2030" inputId="fechaI" [showIcon]="true" (onSelect)="fechaDesdeSeleccionado($event)"></p-calendar>
+                        <label for="txt-fecha-na">Desde</label>
+                    </div>
+                    <div class="p-float-label col-12 mt-1">
+                        <p-calendar   [(ngModel)]="filtro.fechaHasta" yearRange="2000:2030" [autoZIndex]="true" [readonlyInput]="true"   appendTo="body" dateFormat="dd/mm/yy" [minDate]="fechaDesde" [maxDate]="fechaHastaMax" [monthNavigator]="true" [yearNavigator]="true" inputStyleClass="input-block p-inputtext input-pj" [style] ="{ width:'100%'}" [inputStyle] ="{ width:'100%'}" yearRange="2000:2030" inputId="fechaI" [showIcon]="true"></p-calendar>
+                        <label for="txt-fecha-na">Hasta</label>
+                    </div>
+
+                    <div class="col-12 flex justify-content-center">
+                        <button pButton pRipple type="button" label="Buscar" icon="pi pi-search" iconPos="right"  class="p-button-sm p-btn-pj" (click)="consultarSolicitudes()"></button> 
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+</div>
+
+<p-dialog [(visible)]="dialogDetalle" [style]="{width: '900px'}" header="Detalle de Solicitud" [modal]="true" class="p-dialogR" styleClass="dialog-primary" appendTo="body">
+    <ng-template pTemplate="content">
+<!--         <div class="card" style="margin-top: 0%; margin-bottom: 0%;">
+            <p-table [value]="listaIps" dataKey="id" [scrollable]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Dirección IP</th>
+                        <th>Estado</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ip>
+                    <tr>
+                        <td>{{ip.ipPublica}}</td>
+                        <td>{{ip.activo}}</td>
+                    </tr>
+                </ng-template>
+              </p-table>
+        </div> -->
+<!--         <div class="card" style="margin-right: 5%; margin-left: 5%;">
+          <p align="left">
+            <label style="color: red;">*Las Ips son asignadas a la entidad por lo tanto aplican para todas sus operaciones</label>                      
+          </p>
+        </div>  -->
+      <div class="p-formgrid grid">
+       <div class="col-6" >
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Nro. de Solicitud</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.idSolicitud}}</label>
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Tipo</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.nombreTipoSolicitud}}</label>
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Estado de Solicitud</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <button pButton pRipple disabled="true" *ngIf="solicitudDetallado.idEstadoSolicitud === 1" style="width: 90px;padding-block:1px;margin-bottom: 6px" type="button" label="Pendiente" class="p-button-sm p-button-rounded p-button-secondary"></button>
+                <button pButton pRipple disabled="true" *ngIf="solicitudDetallado.idEstadoSolicitud === 2" style="width: 90px;padding-block:1px;margin-bottom: 6px" type="button" label="Aprobado" class="p-button-sm p-button-rounded p-button-success"></button> 
+                <button pButton pRipple disabled="true" *ngIf="solicitudDetallado.idEstadoSolicitud === 3" style="width: 90px;padding-block:1px;margin-bottom: 6px" type="button" label="Rechazado" class="p-button-sm p-button-rounded p-button-Danger"></button> 
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Registrada por</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.usuarioRegistro}}</label>
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Nombre de Solicitante</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.solicitante}}</label>
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Fecha Hora Solicitud</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.fechaRegistro}}</label>
+            </div>
+            <div class="p-field">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Justificación</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label class="p-text-left" style="width: 240px !important; display: inline-flex;" textWrap="true">{{this.solicitudDetallado.justificacion}}</label>
+            </div>
+            <div class="p-field" *ngIf="solicitudDetallado.usuarioEvaluo">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Usuario Evaluador</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.usuarioEvaluo}}</label>
+            </div>
+            <div class="p-field" *ngIf="solicitudDetallado.fechaEvaluacion">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Fecha Hora Evaluación</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.fechaEvaluacion}}</label>
+            </div>
+            <div class="p-field" *ngIf="this.solicitudDetallado.cuotaActual && solicitudDetallado.idTipoSolicitud===2">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Cuota Actual</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.cuotaActual}}</label>
+            </div>      
+            <div class="p-field" *ngIf="solicitudDetallado.estadoActual && solicitudDetallado.idTipoSolicitud===4">
+                <label style="font-weight: bold; width: 152px !important; display: inline-flex;">Estado Permiso Actual</label>
+                <label style="font-weight: bold;">:&nbsp;</label>
+                <label textWrap="true">{{this.solicitudDetallado.estadoActual}}</label>
+            </div>
+    </div>
+    <div class="col-6">
+  <!--           <p-accordion>
+                <p-accordionTab header="Datos solicitados para el permiso:">
+
+                    <div class="p-field" *ngIf="(solicitudDetallado.idTipoSolicitud===1 || solicitudDetallado.idTipoSolicitud===2) && cambioCuota">
+                        <label style="font-weight: bold;">Cuota :&nbsp;</label>
+                        <label textWrap="true">{{this.solicitudDetallado.cuotaCambio}}</label>
+                    </div>
+                    <div class="p-field" *ngIf="solicitudDetallado.idTipoSolicitud===4 && cambioCuota">
+                        <label style="font-weight: bold;">Estado :&nbsp;</label>
+                        <label textWrap="true">{{this.solicitudDetallado.estadoCambio}}</label>
+                    </div>
+                    <div class="p-field" *ngIf="(solicitudDetallado.idTipoSolicitud===1 || solicitudDetallado.idTipoSolicitud===3) && cambioListaIps">
+                        <label style="font-weight: bold;">Direcciones Ipv4 :&nbsp;</label>
+                        <p-table [value]="solicitudDetallado.listaIpSolicitud" dataKey="id" [scrollable]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Ip Publica</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-ip>
+                                <tr>
+                                    <td>{{ip.ipPublica}}</td>
+                                    <td>{{ip.activo}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div> 
+                </p-accordionTab>
+            </p-accordion> -->
+            <!-- <p-fieldset style="padding-top: 0px !important;" [toggleable]="true"> -->
+            <p-fieldset>    
+                <ng-template class="fieldset-headerR" pTemplate="header">Datos solicitados para el permiso</ng-template>
+                <div class="p-field" *ngIf="(solicitudDetallado.idTipoSolicitud===1 || solicitudDetallado.idTipoSolicitud===2) && cambioCuota">
+                    <label style="font-weight: bold;">Cuota :&nbsp;</label>
+                    <label textWrap="true">{{this.solicitudDetallado.cuotaCambio}}</label>
+                </div>
+                <div class="p-field" *ngIf="solicitudDetallado.idTipoSolicitud===4 && cambioEstado">
+                    <label style="font-weight: bold;">Estado :&nbsp;</label>
+                    <label textWrap="true">{{this.solicitudDetallado.estadoCambio}}</label>
+                </div>
+                <div class="p-field" *ngIf="(solicitudDetallado.idTipoSolicitud===1 || solicitudDetallado.idTipoSolicitud===3) && cambioListaIps">
+                    <label style="font-weight: bold;">Direcciones Ipv4 :&nbsp;</label>
+                    <p-table *ngIf="solicitudDetallado.listaIpSolicitud" [value]="solicitudDetallado.listaIpSolicitud" [paginator]="true" [rows]="5" dataKey="id" [scrollable]="true"
+                     responsiveLayout="scroll"
+                    styleClass="p-datatable-sm">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Ip Publica</th>
+                                <th>Estado</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-ip>
+                            <tr>
+                                <td>{{ip.ipPublica}}</td>
+                                <td>{{ip.activo}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </p-fieldset>
+    </div>
+</div>              
+<!--         <div class="p-field">
+            <label style="font-weight: bold;">Cambios Solicitados :&nbsp;</label>
+        </div>
+        <div class="p-field" *ngIf="cambioEstado">
+            <label style="font-weight: bold;">Estado Solicitado :&nbsp;</label>
+            <label textWrap="true">{{this.solicitudDetallado.estadoCambio}}</label>
+        </div>
+        <div class="p-field" *ngIf="cambioCuota">
+            <label style="font-weight: bold;">Cuota Solicitada :&nbsp;</label>
+            <label textWrap="true">{{this.solicitudDetallado.cuotaCambio}}</label>
+        </div>
+        <div class="p-field" *ngIf="cambioListaIps">
+            <label style="font-weight: bold;">Direcciones Ipv4 solicitadas :&nbsp;</label>
+            <label textWrap="true">{{this.solicitudDetallado.estadoActual}}</label>
+        </div>                                   
+ -->
+<!--
+            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="inventoryStatus">Inventory Status</label>
+            <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+
+        <div class="p-formgrid grid">
+            <div class="p-field p-col">
+                <label for="price">Price</label>
+                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+            </div>
+            <div class="p-field p-col">
+                <label for="quantity">Quantity</label>
+                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+            </div>
+        </div> -->
+    </ng-template>
+
+   <ng-template pTemplate="footer" >
+        <div align="right" >
+            <button pButton pRipple label="Cerrar" icon="pi pi-times" class="btn-pj p-button-danger" (click)="hideDetalle()"></button>
+        </div>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,36 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+::ng-deep .btn-back {
+    padding: 0px 0px !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #333333;
+}
+::ng-deep .btn-back span{
+    font-size: 20px;
+}
+.header-item{
+    padding: 0.5rem 0.5rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.title-header{
+    margin-right: 0.5rem;
+    font-size: 18px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.description-header{
+    color: #666666;
+    font-size: 14px;
+}
+@media screen and ( max-width: 576px){
+    .title-header{
+        width: 100%;
+    }
+}

@@ -1,0 +1,760 @@
+@import 'global.scss';
+/***************** date picker *******************/
+::ng-deep .p-datepicker table td > span {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+::ng-deep .p-datepicker table td {
+    padding: 0rem;
+}
+::ng-deep .p-datepicker table td > span.p-highlight {
+    color: #fff;
+    background: $color-pj-primary;
+}
+::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+    margin-right: 0.5rem;
+    /*background-color: red;*/
+    color: #333333;
+    padding:2px 2px;
+    background-color: #fff;
+    border: 1px solid #B5B5B5;
+    border-radius: .25rem;
+}
+::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year {
+    margin-right: 0.5rem;
+    /*background-color: red;*/
+    color: #333333;
+    padding:2px 2px;
+    background-color: #fff;
+    border: 1px solid #B5B5B5;
+    border-radius: .25rem;
+}
+::ng-deep .p-datepicker .p-datepicker-header {
+    padding: 0.3rem;
+    color: $color-pj-primary;
+    border-bottom: 1px solid $color-pj-primary;
+}
+::ng-deep .p-datepicker:not(.p-datepicker-inline) {
+    /* box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%); */
+    box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%), 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);
+}
+/************** dropdown *****************/
+::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: #fff;
+    background: $color-pj-primary;
+}
+
+::ng-deep .p-dropdown:not(.p-disabled).p-focus{
+  box-shadow: 0 0 0 0.1rem $color-pj-input-50 !important;
+  border-color: $color-pj-input-50 !important;
+}
+::ng-deep .p-dropdown:not(.p-disabled):hover {
+  border-color: $color-pj-input-50 !important;
+}
+::ng-deep .dropdown-float{
+  height: 35px !important;
+  line-height:20px !important;
+}
+::ng-deep .label-float-dropdown{
+    position: relative;
+    z-index: 1;
+    top: 7px;
+    background-color: white;
+    display: initial;
+    padding: 0px 4px;
+    margin-left: 8px;
+    color: #6c757d;;
+    font-size: 14px;
+}
+
+::ng-deep .dropdown-float-group:focus-within > label{
+  color: $color-pj-input;
+}
+
+::ng-deep .mt-input-dropdown{
+  margin-top: 0.8rem !important;
+}
+
+/* dropdown input filter*/
+::ng-deep .p-inputtext:enabled:focus {
+  box-shadow: 0 0 0 0.1rem $color-pj-input-50;
+  border-color: $color-pj-input;
+}
+::ng-deep .p-inputtext:enabled:hover {
+  border-color: $color-pj-input;
+}
+::ng-deep .w-100{
+  width: 100% !important;
+}
+
+/************** button ****************/
+::ng-deep .btn-shadow-pj{
+  -webkit-box-shadow: 0 2px 2px 0 $color-pj-primary-50, 0 3px 1px -2px $color-pj-primary-50, 0 1px 5px 0 $color-pj-primary-50;
+  box-shadow: 0 2px 2px 0 $color-pj-primary-50, 0 3px 1px -2px $color-pj-primary-50, 0 1px 5px 0 $color-pj-primary-50;
+}
+::ng-deep .btn-pj{
+    background-color: $color-pj-primary !important;
+  }
+::ng-deep .btn-pj-outlined{
+    color:$color-pj-primary !important;
+    background-color: $color-pj-bg-light !important;
+    border:1px solid $color-pj-primary-50 !important;
+
+}
+::ng-deep .btn-pj-light{
+  color:$color-pj-primary !important;
+  background-color: $color-pj-bg-light !important;
+  border:none  !important;
+}
+
+::ng-deep .btn-pj-light:hover{
+  border:1px solid $color-pj-primary-50 !important;
+}
+
+::ng-deep .btn-pj:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.1rem $color-pj-primary-50 !important;
+}
+::ng-deep .p-button:focus {
+outline: 0 none;
+outline-offset: 0;
+box-shadow: 0 0 0 0.1rem $color-pj-primary-50 !important;
+}
+/*input*/
+/* .input-pj{
+  border: 1px solid $color-pj-input !important;
+}
+.input-pj:hover{
+  border: 1px solid $color-pj-accent !important;
+}
+.input-pj:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem $color-pj-primary-50 !important;
+  border-color: $color-pj-primary !important;
+} */
+::ng-deep .input-pj{
+  border: 1px solid $color-pj-input !important;
+}
+::ng-deep .input-pj:hover{
+  border: 1px solid $color-pj-input-accent !important;
+}
+::ng-deep .input-pj:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.1rem $color-pj-input-50;
+  border-color: $color-pj-input;
+  z-index: initial !important;
+}
+::ng-deep  .input-addon{
+  background-color: $color-pj-input;
+  color: #FFF;
+}
+::ng-deep  .input-addon-icon{
+  color: #FFF;
+}
+::ng-deep .p-inputgroup-addon{
+  padding: 0.2rem 0.5rem !important;
+}
+/*********** input bordered float ********************/
+::ng-deep .p-float-label input:focus ~ label,::ng-deep .p-float-label input.p-filled ~ label,::ng-deep .p-float-label textarea:focus ~ label,::ng-deep .p-float-label textarea.p-filled ~ label,::ng-deep .p-float-label .p-inputwrapper-focus ~ label,::ng-deep .p-float-label .p-inputwrapper-filled ~ label {
+  top: 0.4rem;
+  font-size: 14px;
+  background-color: $color-pj-bg-card;
+  padding: 0px 2px;
+  margin-left: 0px;
+  color: $color-pj-input;
+}
+::ng-deep .p-float-label > label {
+  left: 1rem;
+}
+
+::ng-deep .p-float-label textarea ~ label {
+  top: 1.8rem;
+}
+
+/************ button ****************/
+::ng-deep .p-button {
+  background: $color-pj-primary;
+  border: 1px solid $color-pj-primary;
+
+}
+::ng-deep .p-button:enabled:hover {
+    background: $color-pj-accent;
+    border-color: $color-pj-accent;
+}
+
+::ng-deep .g-capcha > div > div {
+  transform:scale(0.8) !important;
+  transform-origin:center !important;
+}
+
+::ng-deep .btn-pj-Outlined-detail{
+  background-color: white !important;
+  color:  $color-pj-primary !important;
+  border: 1px solid $color-pj-primary !important;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  width: auto;
+  -webkit-transition: background-color 0ms linear !important;
+  -ms-transition: background-color 0ms linear !important;
+  transition: background-color 0ms linear !important;
+}
+
+::ng-deep .btn-pj-Outlined-detail:hover{
+  background-color: $color-pj-primary !important;
+  color:  white !important;
+  -webkit-transition: background-color 0ms linear !important;
+  -ms-transition: background-color 0ms linear !important;
+  transition: background-color 0ms linear !important;
+}
+
+::ng-deep .btn-pj-outlined-shadow{
+  background-color: white !important;
+  color:  $color-pj-primary !important;
+  /* border: 1px solid $color-pj-primary !important; */
+  border: none;
+  padding: 4px;
+  font-size: 12px;
+  border-radius: 3px;
+  -webkit-transition: background-color 0ms linear !important;
+  -ms-transition: background-color 0ms linear !important;
+  transition: background-color 0ms linear !important;
+}
+
+::ng-deep .btn-pj-outlined-shadow:hover{
+  background-color: $color-pj-primary !important;
+  color:  white !important;
+  -webkit-transition: background-color 0ms linear !important;
+  -ms-transition: background-color 0ms linear !important;
+  transition: background-color 0ms linear !important;
+}
+
+@media screen and ( max-width: 992px){
+  ::ng-deep .btn-pj-Outlined-detail{
+    width: auto;
+    padding: 8px 10px;
+  }
+}
+
+::ng-deep .p-button.p-button-icon-only.btn-rounded-sm{
+  width: 2rem;
+  height: 2rem;
+}
+
+/******************   tab navigator  *************************/
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 0.2rem $color-pj-primary-50;
+}
+/********************* panel default ************************/
+::ng-deep .p-panel .p-panel-header {
+  border: 1px solid #dee2e6;
+  padding: 0.7rem 1.25rem;
+  /* background: $color-pj-accent;
+  color: #ffffff; */
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+::ng-deep .p-panel .p-panel-header .p-panel-header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* color: #ffffff; */
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  transition: box-shadow 0.15s;
+}
+
+::ng-deep .p-panel .p-panel-header .p-panel-header-icon:enabled:hover {
+  /* color: #ffffff; */
+  border-color: transparent;
+  /* background: $color-pj-accent; */
+}
+
+/**************** panel primario *****************/
+::ng-deep .p-panel-primary .p-panel-header {
+  border: 1px solid #dee2e6;
+  padding: 0.7rem 1.25rem;
+  background: $color-pj-primary;
+  color: #ffffff;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+::ng-deep .p-panel-primary .p-panel-header .p-panel-header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #ffffff;
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  transition: box-shadow 0.15s;
+}
+
+::ng-deep .p-panel-primary .p-panel-header .p-panel-header-icon:enabled:hover {
+  color: #ffffff;
+  border-color: transparent;
+  background: $color-pj-accent;
+}
+/**************** panel secundario *****************/
+::ng-deep .p-panel-secondary .p-panel-header {
+  border-bottom: 2px solid $color-pj-input-50;
+  padding: 0.7rem 1.25rem;
+  background: #ffffff;
+  color: $color-pj-input;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+::ng-deep .p-panel-secondary .p-panel-header .p-panel-header-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: $color-pj-input;
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  transition: box-shadow 0.15s;
+}
+
+::ng-deep .p-panel-secondary .p-panel-header .p-panel-header-icon:enabled:hover {
+  color: $color-pj-input;
+  border-color: transparent;
+  background: #ffffff;
+}
+::ng-deep .p-panel .p-panel-header .p-panel-header-icon:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem $color-pj-input-50;
+}
+
+::ng-deep .center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*********** panel transparent ************/
+::ng-deep .p-panel.p-panel-transparent .p-panel-content {
+  padding: 0rem;
+  border: none;
+  background:initial;
+  color: initial;
+}
+/************* sidebar *************/
+::ng-deep  .p-sidebar .p-sidebar-header {
+  padding: 0px ;
+}
+::ng-deep .p-sidebar .p-sidebar-content {
+  padding: 0px;
+}
+/************** overlay panel  ***************/
+::ng-deep  .p-overlaypanel .p-overlaypanel-close {
+  background-color: $color-pj-primary;
+  z-index: 9 ;
+}
+::ng-deep .p-overlaypanel .p-overlaypanel-close:enabled:hover {
+  background-color: $color-pj-primary;
+}
+/****************** paginator********************/
+::ng-deep .p-paginator {
+  background: transparent;
+  padding: 0.5rem 1rem;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: $color-pj-primary;
+  border-color: $color-pj-primary;
+  color: #fff;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #000;
+  border-radius: 50%;
+  min-width: 2rem;
+  height: 2rem;
+}
+
+::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  color: #fff;
+  background: $color-pj-primary;
+}
+
+::ng-deep .p-paginator .p-paginator-first,::ng-deep .p-paginator .p-paginator-prev,::ng-deep .p-paginator .p-paginator-next,::ng-deep .p-paginator .p-paginator-last {
+  min-width: 2rem ;
+  height: 2rem ;
+  border-radius: 50% ;
+}
+::ng-deep .total-paginas{
+  font-size: 13px;
+}
+/*******************  tooltip  *****************/
+::ng-deep .p-tooltip .p-tooltip-text{
+  background-color: #455a64;
+  
+}
+/*************** checkbox ********************/
+::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+  border-color: $color-pj-primary;
+  background: $color-pj-primary;
+}
+::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: $color-pj-accent;
+  background: $color-pj-accent;
+  color: #ffffff;
+}
+::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus{
+  box-shadow: 0 0 0 0.2rem $color-pj-primary-50;
+  border-color: $color-pj-primary;
+}
+::ng-deep .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: $color-pj-primary;
+}
+/****************** label *******************/
+::ng-deep .input-group{
+  margin-bottom: 0.6rem !important;
+  padding: 0rem 0.2rem;
+}
+
+::ng-deep .input-label{
+  margin-bottom: 0.3rem !important;
+  display: block;
+}
+::ng-deep .tabview-header-pj > a{
+  padding: 0.5rem 1rem !important;
+}
+::ng-deep .tabview-header-pj.p-highlight > a{
+  background-color: $color-pj-primary !important;
+  color: white !important;
+  border-color: $color-pj-primary !important;
+}
+/******************** radio buton**********************/
+::ng-deep .p-field-checkbox, .p-field-radiobutton {
+  margin-bottom: 0rem;
+}
+::ng-deep .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+  background-color:$color-pj-accent;
+}
+::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: $color-pj-primary;
+  background: $color-pj-primary;
+}
+::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+  box-shadow:0 0 0 0.2rem $color-pj-primary-50;
+  border-color: $color-pj-primary ;
+}
+
+::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
+  border-color: $color-pj-primary ;
+  background: $color-pj-primary ;
+}
+::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+  border-color: $color-pj-primary ;
+}
+::ng-deep .p-checkbox-label {
+  font-size: 15px;
+  color: $color-pj-primary;
+}
+/************************* div parrafos ***************************/
+::ng-deep .text-body{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+::ng-deep .text-paragraph{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+::ng-deep .text-title{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+}
+::ng-deep .text-body-title{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+}
+/********************************* panel filter overlay **********************************/
+::ng-deep .panel-filter{
+  padding: 0px;
+}
+::ng-deep .panel-filter .p-overlaypanel-content{
+  padding: 0px;
+
+}
+/*********************** badge *************************/
+::ng-deep .p-badge {
+  background:  $color-pj-primary;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  line-height: 14px;
+  border: 1px solid #ffffff;
+}
+/******************* table ********************/
+::ng-deep .p-datatable .p-sortable-column.p-highlight:hover {
+  background: #e9ecef;
+  color: $color-pj-primary;
+}
+::ng-deep .p-datatable .p-sortable-column.p-highlight {
+  background: #f8f9fa;
+  color: $color-pj-primary;
+}
+::ng-deep .p-datatable .p-sortable-column:focus {
+  box-shadow: inset 0 0 0 0.15rem $color-pj-primary-50 ;
+}
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  padding: 0.2rem 0.5rem;
+}
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  font-weight: 600;
+  color: #495057;
+  background: #f8f9fa;
+}
+::ng-deep .p-datatable .p-datatable-tfoot > tr > td {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  font-weight: 600;
+  color: #495057;
+  background: #f8f9fa;
+}
+/************* dialog *************/
+::ng-deep.p-dialog .p-dialog-header {
+  padding: 0.4rem 1rem;
+}
+::ng-deep.p-dialog .p-dialog-header .p-dialog-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+::ng-deep.p-dialog .p-dialog-header .p-dialog-header-icon:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem $color-pj-primary-50;
+}
+::ng-deep.p-dialog.dialog-primary .p-dialog-header {
+  border-bottom: 1px solid #e9ecef;
+  background: $color-pj-primary;
+  color: #ffffff;
+  padding: 0.4rem 1rem;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  font-size: 15px;
+}
+::ng-deep .p-dialog.dialog-primary .p-dialog-header .p-dialog-header-icon {
+  color: #fff;
+}
+::ng-deep.p-dialog.dialog-secondary .p-dialog-header {
+  border-bottom: 2px solid $color-pj-input-50;
+  background: #ffffff;
+  color: $color-pj-input;
+  padding: 0.4rem 1rem;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  font-size: 15px;
+}
+::ng-deep .p-dialog.dialog-secondary .p-dialog-header .p-dialog-header-icon {
+  color: $color-pj-input;
+}
+::ng-deep .p-dialog .p-dialog-footer {
+  border-top: 1px solid $color-pj-input-50;
+  padding: .5rem .5rem .5rem .5rem;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+::ng-deep .p-dialog.dialog-primary .p-dialog-header .p-dialog-header-icon:enabled:hover {
+  border: 2px solid #FFFFFF !important;
+  background: $color-pj-accent !important;
+}
+::ng-deep .p-toolbar {
+  padding: 0rem;
+}
+::ng-deep .rounded-pj{
+  border-radius: 8px
+}
+::ng-deep .p-menu .p-menuitem-link:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 0.15rem $color-pj-primary-50;
+}
+::ng-deep .p-divider .p-divider-content {
+  background-color: $color-pj-bg-card;
+}
+::ng-deep .p-progressbar .p-progressbar-value {
+  background: $color-pj-primary;
+}
+::ng-deep .p-blockui.p-component-overlay {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+::ng-deep .p-skeleton {
+  background-color: #d1d5db;
+  border-radius: 3px;
+}
+/***********************      divider      ***********************/
+::ng-deep .p-divider.p-divider-horizontal {
+  margin: 0rem 0;
+  padding: 0 0rem;
+}
+/***********************    flow-text     ************************/
+::ng-deep .flow-text{
+  line-height: 1.2;
+}
+
+@media only screen and (min-width: 360px){
+  ::ng-deep .flow-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 390px){
+  ::ng-deep .flow-text {
+    font-size: 1.224rem;
+  }
+}
+@media only screen and (min-width: 420px){
+  ::ng-deep .flow-text {
+    font-size: 1.248rem;
+  }
+}
+
+@media only screen and (min-width: 450px){
+  ::ng-deep .flow-text {
+    font-size: 1.272rem;
+  }
+}
+
+@media only screen and (min-width: 480px){
+  ::ng-deep .flow-text {
+    font-size: 1.296rem;
+  }
+}
+
+@media only screen and (min-width: 510px){
+  ::ng-deep .flow-text {
+    font-size: 1.32rem;
+  }
+}
+@media only screen and (min-width: 540px){
+  ::ng-deep .flow-text {
+    font-size: 1.344rem;
+  }
+}
+
+@media only screen and (min-width: 570px){
+  ::ng-deep .flow-text {
+    font-size: 1.368rem;
+  }
+}
+
+@media only screen and (min-width: 600px){
+  ::ng-deep .flow-text {
+    font-size: 1.392rem;
+  }
+}
+/*
+@media only screen and (min-width: 630px){
+  ::ng-deep .flow-text {
+    font-size: 1.416rem;
+  }
+}
+
+@media only screen and (min-width: 660px){
+  ::ng-deep .flow-text {
+    font-size: 1.44rem;
+  }
+}
+
+@media only screen and (min-width: 690px){
+  ::ng-deep .flow-text {
+    font-size: 1.464rem;
+  }
+}
+
+@media only screen and (min-width: 720px){
+  ::ng-deep .flow-text {
+    font-size: 1.488rem;
+  }
+}
+
+@media only screen and (min-width: 750px){
+  ::ng-deep .flow-text {
+    font-size: 1.512rem;
+  }
+}
+
+@media only screen and (min-width: 780px){
+  ::ng-deep .flow-text {
+    font-size: 1.536rem;
+  }
+}
+
+@media only screen and (min-width: 810px){
+  ::ng-deep .flow-text {
+    font-size: 1.56rem;
+  }
+}
+
+@media only screen and (min-width: 840px){
+  ::ng-deep .flow-text {
+    font-size: 1.584rem;
+  }
+}
+
+@media only screen and (min-width: 870px){
+  ::ng-deep .flow-text {
+    font-size: 1.608rem;
+  }
+}
+
+@media only screen and (min-width: 900px){
+  ::ng-deep .flow-text {
+    font-size: 1.632rem;
+  }
+}
+
+@media only screen and (min-width: 930px){
+  ::ng-deep .flow-text {
+    font-size: 1.656rem;
+  }
+}
+
+@media only screen and (min-width: 960px){
+  ::ng-deep .flow-text {
+    font-size: 1.68rem;
+  }
+}
+*/
+
+/** loading styles **/
+.my-overlay {
+  left: 0 !important;
+  top: 0 !important;
+  z-index: 10000 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  background-color: rgba(0,0,0,0.9) !important;
+  cursor: pointer !important;
+  visibility: visible !important;
+  transition: visibility 0s, opacity 0.4s linear !important;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: wait !important;
+}
+.my-overlay i.fa.fa-spinner.fa-spin, .spinner-big {
+  font-size: 100px !important;
+}

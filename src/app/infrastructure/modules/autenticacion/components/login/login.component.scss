@@ -1,0 +1,151 @@
+@import '../../../../../global.scss';
+.main-container{
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    overflow: auto;
+    left: 0;
+    right: 0;
+}
+  
+.main-content {
+    min-height: calc(100vh - 100px);
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  @media (min-width: 1500px){
+    .main-content {
+        width: 1470px;
+    }
+  }
+  .titulo {
+    font-size: 1.2em;
+    font-weight: 800
+  }
+  .body-login{
+    background-color: $color-pj-bg-card;
+    border-radius: 8px;
+  }
+  .btn-login{
+    background-color: $color-pj-primary !important;
+  }
+  .btn-crear-cuenta{
+      color:$color-pj-primary !important;
+  }
+  .panel-portada{
+      background-color: white;
+      border-radius: 8px;
+      margin: 8px;
+      padding: 32px 8px 64px 8px;
+  }
+  .center{
+      display: flex;
+      text-align: center;
+      justify-content: center;
+  }
+  .image-portada{
+    width: 60%;
+  }
+  .panel-imagen-portada{
+    //background-color: $color-pj-bg-light;
+    padding: 30px 15px 30px 15px;
+    border-radius: 15px;
+  }
+  @media screen and ( max-width: 960px){
+      .image-portada{
+          width: 80%;
+      }
+
+  }
+  .image-no-data{
+      width: 200px;
+  }
+  @media screen and ( max-width: 960px){
+      .image-no-data{
+          width: 50%;
+      }
+  }
+  .image-portada-back{
+    position: initial;
+    z-index: auto;
+  }
+  .panel-portada-info{
+    padding: 2rem 1rem;
+    overflow: hidden;
+  }
+  @media screen and ( max-width: 575px){
+    .image-portada-back{
+      /* position: fixed;
+      z-index: -1; */
+      position: absolute;
+      z-index: -1;
+    }
+    .panel-portada-info{
+      /* background-color: #ffffff; */
+      //background: rgba(255,255,255,0.9);
+    }
+    .panel-imagen-portada{
+      background-color: transparent;
+      padding: inherit;
+      border-radius: inherit;
+    }
+  }
+  .panel-login{
+    padding: 20px 0px;
+    margin-right: 0rem;
+    margin-left: 0rem;
+    margin-top: 0rem;
+    
+  }
+  .image-login-logo{
+    /* width: 100%; */
+    height: 100px;
+    padding: 20px 2px 0px 2px;
+  }
+  .titulo-rq{
+    font-size: 12px;
+    font-weight: 400;
+    color: $color-pj-primary;
+    padding: 0px 2px 0px 10px
+  }
+  ::ng-deep .input-block{
+    width: 100% !important;
+  }
+  .input-addon{
+    background-color: $color-pj-primary;
+  }
+  .input-addon-icon{
+    color: #FFF;
+  }
+
+  .login-nota-text{
+    font-size: 11px;
+    line-height: 14px;
+    color:#666666
+  }
+  /**/
+  hr { 
+    display: block; height: 1px;
+    border: 0; 
+    border-top: 1px solid $color-pj-primary;
+  }
+  .login-title{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 300;
+    color: $color-pj-primary;
+  }
+  .text-body-title{
+    font-size: 28px;
+    font-weight: 300;
+    color: #333333;
+  }
+.bloqueo-icon-login{
+  font-size: 2rem;
+  color: $color-pj-primary;
+}

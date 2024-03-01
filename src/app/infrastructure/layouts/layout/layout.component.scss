@@ -1,0 +1,132 @@
+@import '../../../global.scss';
+.main-body {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.row-header {
+  flex: 0 1 auto;
+  z-index: 99;
+}
+.row-content {  
+  flex: 1 1 auto;
+  /* display: flex; */
+  overflow-y: auto;
+  position: relative;
+}
+.row-content-body{
+  display: flex;
+  flex-direction: row;
+  z-index: 99;
+}
+.row-footer {
+  flex: 0 1 50px;
+  z-index: 999;
+}
+.panel-sidebar{
+  display: block;
+  height: 100%;
+  position: fixed;
+  width: 250px;
+  transition: width 500ms;
+  z-index: 999;
+  background-color: white;
+}
+.panel-sidebar.sidebar-min{
+  display: flex;
+  width: auto;
+  z-index: 999;
+}
+
+.panel-content{
+  margin-left: 250px;
+  padding: 0rem 0rem;
+  width: auto;
+  z-index: 1;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  /* --------------- */
+/*   overflow-y: auto; */
+}
+.panel-content.content-full{
+  margin-left: 50px;
+  transition: margin-left 300ms;
+}
+
+@media (max-width: 767px) {
+  .panel-content{
+    margin-left: 0px;
+    transition: margin-left 300ms;
+  }
+  .panel-content.content-full{
+    margin-left: 0px;
+
+    transition: margin-left 300ms;
+  }
+  .panel-sidebar{
+    display: none;
+  }
+  .panel-sidebar.sidebar-min{
+    display: none;
+  }
+}
+::ng-deep .page-header{
+  position: sticky;
+  top: 0px;
+  z-index: 9;
+  width: 100%;
+  background-color: white;
+  padding: 0rem 1rem;
+}
+/* ::ng-deep .toolbar-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+/* ::ng-deep .page-body{
+  display: flex;
+  flex-flow: column;
+}
+::ng-deep .page-content{
+  flex: 1 1 auto;
+  margin-top: 50px;
+  padding: 0.8rem 0.8rem;
+  width: 100%;
+}
+::ng-deep .page-header{
+  flex: 0 1 auto;
+  position: fixed;
+  background-color: transparent;
+  width: 100%;
+}
+
+::ng-deep .toolbar-content{
+  background-color: white;
+  padding: 0rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-content ::ng-deep .page-body .page-header{
+  padding-right: 250px;
+  width: 100%;
+  z-index: 9;
+}
+@media (max-width: 767px) {
+  .panel-content ::ng-deep .page-body .page-header{
+    padding-right: 0px;
+  }
+  .panel-content.content-full ::ng-deep .page-body .page-header{
+    padding-right: 0px;
+  }
+}
+.panel-content.content-full ::ng-deep .page-body .page-header{
+  padding-right: 50px;
+} */
+.footer-min{
+  position: fixed;
+  bottom: 0;
+}

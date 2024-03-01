@@ -1,0 +1,35 @@
+@import '../../../../../global.scss';
+.panel-filter-content{
+    width: 300px;
+    padding: 0.5rem 0.5rem;
+}
+
+/* .layout-news-active :host ::ng-deep .p-datatable tr > th {
+    top: 4rem;
+} */
+.content-table{
+    margin: .5rem 1rem 0rem 1rem;
+}
+::ng-deep .table-header-pj>th{
+/*     position: -webkit-sticky;
+    position: sticky;
+    top: 3rem;
+ */
+    border-bottom: 2px solid $color-pj-primary !important ;
+}
+::ng-deep .table-row>td{
+    border-bottom: 1px solid $color-pj-input-50 !important ;
+}
+::ng-deep .p-datatable .p-paginator-bottom {
+    background-color: white;
+    padding: 1px
+}
+
+::ng-deep .p-datatable .p-datatable-footer {
+    padding: 0px;
+}
+
+::ng-deep .p-datatable .p-datatable-header {
+    padding: 0.3rem 0.3rem;
+    font-weight: 600;
+}

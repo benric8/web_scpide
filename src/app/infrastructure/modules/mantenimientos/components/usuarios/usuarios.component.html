@@ -1,0 +1,164 @@
+<div class="page-body">
+    <div class="page-header shadow-2 grid m-0">
+        <div class="toolbar col-12 m-0 p-0">
+            <div class="toolbar-content grid m-0">
+                <div class="col-12 xl:col-6 p-0 flex justify-content-between xl:justify-content-start align-items-center">
+                    <div class="py-2 flex">
+                        <!--<button pButton pRipple type="button" (click)="recargarListaEventClick()" icon="pi pi-refresh" iconPos="right"  class="btn-pj p-button-sm rounded-pj mr-2"></button>
+                        <button pButton pRipple type="button" label="Nuevo"  icon="pi pi-user-plus" iconPos="right" (click)="nuevoVictimaEventClick()"   class="btn-pj p-button-sm rounded-pj"></button>-->
+                        <div class="p-inputgroup">
+                            <input pinput type="text" pInputText placeholder="Usuario" [(ngModel)]="filtro.usuario" maxlength=15 class="input-pj p-inputtext-sm input-rounded" />
+                            <button type="button" pButton pRipple icon="pi pi-search" styleClass="p-button-warn" (click)="buscarUsuarios(filtro)"></button>      
+                        </div>
+                    </div>
+                    <div class="mx-1">
+                        <button pButton pRipple type="button" icon="pi pi-sliders-h" class="btn-pj rounded-pj" (click)="panelFilter.toggle($event)"></button>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-12 xl:col-6 p-0 flex justify-content-center xl:justify-content-end">
+                    <!--
+                    <div class="paginator">
+                        <p-paginator
+                            [rows]="rows"
+                            [totalRecords]="totalRecords"
+                            [rowsPerPageOptions]="[10, 20, 30, 50]"
+                            [pageLinkSize]="pageLinkSize"
+                            [first]="first"
+                            (onPageChange)="paginate($event)"
+                            styleClass="p-1"
+                        >
+                        </p-paginator>
+                    </div>
+                    -->
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="grid m-0">
+            <div class="col-12" style="/*overflow: scroll;*/" >
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <h4 class="px-2"> Lista de Usuarios</h4>
+                       <!--  <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button> -->
+                    </ng-template>
+            
+                    <ng-template pTemplate="right">
+                        <button pButton pRipple label="Nuevo" icon="pi pi-user" class="p-button-secondary p-mr-1"  (click)="agregarUsuario()"></button>
+                        <button pButton pRipple label="Editar" icon="pi pi-user-edit" class="p-button-secondary p-mr-1"  (click)="editarUsuario(UsuarioSeleccionado)" [disabled]="!UsuarioSeleccionado"></button> 
+                        <button pButton pRipple label="Restablecer Contraseña" icon="pi pi-key" class="p-button-secondary p-mr-1"  (click)="reestablecerPassword(UsuarioSeleccionado)" [disabled]="!UsuarioSeleccionado"></button>
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt [value]="listaUsuarios"  [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="UsuarioSeleccionado" dataKey="idUsuario"
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30]" responsiveLayout="scroll"
+                styleClass="p-datatable-sm">
+                    <ng-template pTemplate="header">
+                        <tr class="table-header-pj">
+                            <th ></th>
+                            <th class="table-text">Perfil</th>
+                            <th class="table-text">Usuario</th>
+                            <th class="table-text">Nombres y Apellidos</th>
+                            <th class="table-text">Estado</th>
+                            <th ></th>
+                        </tr>
+                    </ng-template>
+                    <!-- <ng-template pTemplate="body" #tdmas let-item let-rowIndex="rowIndex"> -->
+                    <ng-template pTemplate="body" let-item> 
+                        <tr class="table-row" [pSelectableRow]="item">
+                            <td>
+                                <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                            </td>
+                            <td class="table-text">{{ item.nombrePerfil }}</td>
+                            <td class="table-text">{{ item.usuario }}</td>
+                            <td class="table-text">{{ item.apellidosNombres }}</td>
+                            <td class="table-text">{{ item.activo }}</td>
+                            <td>
+                                <!-- <button pButton pRipple type="button" label="Detalle" class=" p-button-danger p-button-sm btn-detalle" (click)="buscarDetalle(item)"></button> -->
+                            </td>
+                        </tr>      
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+
+    <p-overlayPanel #panelFilter [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'100ms'"  [dismissable]="true" [showCloseIcon]="true" [style]="{ border: '2px solid rgba(147, 13, 13, 0.3)',top: 'initial !important'}" styleClass="shadow-8 panel-filter">
+        <ng-template pTemplate>
+            <div class="panel-filter-content">
+                <div class="grid">
+                    <div class="col-12 pb-0">
+                        <p-divider align="left" styleClass="mb-0 mt-2">
+                            <div class="inline-flex align-items-center">
+                                <i class="pi pi-filter mr-2"></i>
+                                <b>Filtros</b>
+                            </div>
+                        </p-divider>
+                    </div>
+                </div>
+                <div class="grid m-0">
+                    <div class="p-float-label col-12 mt-2">
+                        <input id="filtro-usuario" type="text" [(ngModel)]="filtro.usuario" maxlength=15 class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+                        <label for="filtro-usuario">Usuario</label>
+                    </div>
+                    <div class="dropdown-float-group col-12 mt-0 py-0">
+                        <label class="label-float-dropdown">Perfil</label>
+                        <p-dropdown [options]="perfiles" [(ngModel)]="filtro.idPerfil" optionLabel="label" optionValue="value" placeholder="Seleccione" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+                    </div>
+                    <div class="dropdown-float-group col-12 mt-0 py-0">
+                        <label class="label-float-dropdown">Estado</label>
+                        <p-dropdown [options]="estados" [(ngModel)]="filtro.estado"  optionLabel="label" optionValue="value" placeholder="Seleccione" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+                    </div>
+                    
+                    <div class="col-12 flex justify-content-center">
+                        <button pButton pRipple type="button" label="Buscar" icon="pi pi-search" iconPos="right"  class="p-button-sm p-btn-pj" (click)="buscarUsuarios(filtro)"></button> 
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+</div>
+<p-dialog [(visible)]="dialogRegistroUsuario" [style]="{width: '400px'}" header="{{this.mensajeDialog}}" [modal]="true" styleClass="dialog-primary" appendTo="body">
+    <ng-template pTemplate="content">
+        <div class="dropdown-float-group col-12 mt-0 py-0">
+            <label class="label-float-dropdown">Perfil</label>
+            <p-dropdown [options]="perfiles" [(ngModel)]="usuarioRegistro.idPerfil" optionLabel="label" optionValue="value" placeholder="Seleccione" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+            <small class="p-error" *ngIf="submitted && !usuarioRegistro.idPerfil">Campo Requerido.</small>
+        </div>
+        
+
+        <div class="col-12 mt-2">
+            <label>Usuario</label>
+            <div class="p-inputgroup">
+                <p-inputMask id="dni-input" *ngIf="!onEditarUser" class="p-inputMaskR" inputStyleClass="p-inputMaskR" [(ngModel)]="documento.nroDocumento" (onInput)="limpiarNombres()" [style] ="{ width:'100%'}" styleClass="p-inputMasT" mask="99999999"></p-inputMask>
+                <p-inputMask id="dni-input2" *ngIf="onEditarUser" [disabled]="true" class="p-inputMaskR" inputStyleClass="p-inputMaskR" [(ngModel)]="documento.nroDocumento" (onInput)="limpiarNombres()" [style] ="{ width:'100%'}" styleClass="p-inputMasT" mask="99999999"></p-inputMask>
+                <p-button icon="pi pi-search" *ngIf="!onEditarUser"  title="Validar DNI en Reniec" styleClass="btn-nuevoEntidad p-button-danger" (onClick)="validarDocumento($event)"></p-button>
+                <p-button icon="pi pi-search" *ngIf="onEditarUser" [disabled]="true"  title="Validar DNI en Reniec" styleClass="btn-nuevoEntidad p-button-danger" (onClick)="validarDocumento($event)"></p-button>
+            </div>
+            
+            <small class="p-error" *ngIf="submitted && !documento.nroDocumento">Campo Requerido.</small>
+        </div>
+
+        <div class="p-float-label col-12 mt-2">
+            <input id="reniec-nombre" type="text"  disabled="true" [(ngModel)]="usuarioRegistro.apellidosNombres" class="p-inputtext-sm input-pj w-100" autocomplete="off" pInputText> 
+            <label for="reniec-nombre">Apellidos y Nombres</label>
+            <small class="p-error" *ngIf="submitted && !usuarioRegistro.apellidosNombres">Campo Requerido.</small>
+        </div>
+
+        <div class="dropdown-float-group col-12 mt-0 py-0" *ngIf="onEditarUser">
+            <label class="label-float-dropdown">Estado</label>
+            <p-dropdown [options]="estados" [(ngModel)]="usuarioRegistro.activo" appendTo="body" optionLabel="label" optionValue="value" placeholder="Seleccione" styleClass="input-pj w-100 dropdown-float"></p-dropdown>
+        </div>
+               
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div align="center">
+      <button  pButton pRipple label="Guardar" icon="pi pi-check" class="btn-pj p-button-danger" (click)="saveUsuario()"></button>  
+      <button pButton pRipple label="Cancelar" icon="pi pi-times" class="btn-pj p-button-danger" (click)="hideDialogUsuario()"></button>
+    </div>
+    </ng-template>
+  </p-dialog>

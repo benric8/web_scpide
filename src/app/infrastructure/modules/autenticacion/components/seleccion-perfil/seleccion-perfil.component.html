@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main-content">
+        <div class="content-periles">
+            <div class="grid m-0">
+                <div class="col-12 sm:col-8 sm:col-offset-2 md:col-6 md:col-offset-3 lg:col-4 lg:col-offset-4 px-4">
+                    <div class="grid mt-5">
+                        <div class="col-12">
+                            <div class="title-selec-perfil">
+                                Usted tiene más de un perfil para este usuario
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="description-selec-perfil">
+                                Seleccione el perfil con el que desea ingresar a la plataforma
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="grid">
+                                <div *ngFor="let item of listaPerfiles; let indice = index"  [ngClass]="{'selected': item.select}"  class="shadow-6 col-12 my-2 item-perfil" (click)="selectedPerfil(indice,item)" pRipple>
+                                    <div class="grid mt-2">
+                                        <div class="py-0 col-2 icon-perfil-comtent">
+                                            <fa-icon [icon]="item.icon" class="icon-perfil"></fa-icon>
+                                        </div>
+                                        <div class="col-10 py-0">
+                                            <div class="grid">
+                                                <div class="col-12 pb-0 title-perfil">{{ item.title}}</div>
+                                                <div class="col-12 py-0 description-perfil">{{ item.description}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4 center">
+                            <button pButton pRipple type="button" label="Ingresar"  icon="pi pi-sign-in" iconPos="right"  class="p-button-danger btn-pj" (click)="ingresar()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

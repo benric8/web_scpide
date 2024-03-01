@@ -1,0 +1,94 @@
+@import '../../../../../global.scss';
+.main-container{
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    overflow: auto;
+    left: 0;
+    right: 0;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 100px);
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: 1500px){
+    .main-content {
+        width: 1470px;
+    }
+  }
+/*   @media (min-width: 1000px){
+    .main-content {
+        width: 992px;
+    }
+  } */
+.item-perfil{
+    border-radius: 8px;
+    cursor: pointer;
+    /* border: 2px solid $color-pj-primary-50; */
+}
+.item-perfil:hover {
+    background-color:  $color-pj-accent;
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+
+    /*border: 5px double $color-pj-primary-50;
+    -webkit-transition: border 100ms linear;
+    -ms-transition: border 100ms linear;
+    transition: border 100ms linear;*/
+}
+.item-perfil.selected {
+    background-color:  $color-pj-primary;
+}
+.icon-perfil{
+    font-size: 45px;
+    color: $color-pj-primary;
+}
+.item-perfil:hover .icon-perfil{
+    color: white
+}
+.item-perfil.selected .icon-perfil{
+    color: white
+}
+.icon-perfil-comtent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-perfil{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+}
+.description-perfil{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.item-perfil:hover .title-perfil{
+    color: white;
+}
+.item-perfil:hover .description-perfil{
+    color: white;
+}
+.item-perfil.selected .title-perfil{
+    color: white;
+}
+.item-perfil.selected .description-perfil{
+    color: white;
+}
+.title-selec-perfil{
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: #333333;
+}
+.description-selec-perfil{
+    font-size: 16px;
+    text-align: center;
+    color: #888888;
+}
